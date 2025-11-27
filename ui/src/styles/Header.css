@@ -1,0 +1,48 @@
+.header {
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.header-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.header-subtitle {
+  margin: 0.25rem 0 0;
+  color: rgba(248, 250, 252, 0.75);
+  font-size: 0.95rem;
+}
+
+@media (min-width: 640px) {
+  .header-container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header-container {
+    padding: 0 2rem;
+  }
+}
