@@ -1,5 +1,5 @@
 // Update CONTRACT_ADDRESS after deploying ZSecureDatabase to Sepolia.
-export const CONTRACT_ADDRESS = '0x0000000000000000000000000000000000000000';
+export const CONTRACT_ADDRESS = '0xD84dC23df66bB2abb14bd1b41D59Cb7d2ADa723c';
 
 export const CONTRACT_ABI = [
   {
