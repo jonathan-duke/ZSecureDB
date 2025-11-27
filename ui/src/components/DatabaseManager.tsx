@@ -61,7 +61,19 @@ export function DatabaseManager() {
     query: { enabled: !!selectedId },
   });
 
-  const metadata = metadataData as DatabaseMetadata | undefined;
+  const metadata = useMemo<DatabaseMetadata | undefined>(() => {
+    if (!metadataData) {
+      return undefined;
+    }
+    const [name, owner, createdAt, updatedAt, valueCount] = metadataData as readonly [
+      string,
+      string,
+      bigint,
+      bigint,
+      bigint,
+    ];
+    return { name, owner, createdAt, updatedAt, valueCount };
+  }, [metadataData]);
 
   const { data: encryptedAddressHandle } = useReadContract({
     address: CONTRACT_ADDRESS,
@@ -70,6 +82,16 @@ export function DatabaseManager() {
     args: selectedId ? [BigInt(selectedId)] : undefined,
     query: { enabled: !!selectedId },
   });
+
+  useEffect(() => {
+    if (databaseIds.length === 0) {
+      setSelectedId('');
+      return;
+    }
+    if (!selectedId || !databaseIds.includes(selectedId)) {
+      setSelectedId(databaseIds[0]);
+    }
+  }, [databaseIds, selectedId]);
 
   useEffect(() => {
     setDecryptedAddress('');
