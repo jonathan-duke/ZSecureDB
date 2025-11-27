@@ -128,7 +128,7 @@ export const CONTRACT_ABI = [
       {
         "indexed": true,
         "internalType": "address",
-        "name": "submitter",
+        "name": "account",
         "type": "address"
       }
     ],
@@ -162,7 +162,15 @@ export const CONTRACT_ABI = [
   },
   {
     "inputs": [],
-    "stateMutability": "payable",
+    "name": "confidentialProtocolId",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -205,36 +213,29 @@ export const CONTRACT_ABI = [
     "name": "getDatabaseMetadata",
     "outputs": [
       {
-        "components": [
-          {
-            "internalType": "string",
-            "name": "name",
-            "type": "string"
-          },
-          {
-            "internalType": "address",
-            "name": "owner",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "createdAt",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "updatedAt",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "valueCount",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct ZSecureDatabase.SecureDatabase",
-        "name": "",
-        "type": "tuple"
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "createdAt",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "updatedAt",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "valueCount",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -369,36 +370,36 @@ export const CONTRACT_ABI = [
       }
     ],
     "name": "shareEncryptedValue",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "databaseId",
+        "type": "uint256"
       },
       {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "databaseId",
-            "type": "uint256"
-          },
-          {
-            "internalType": "externalEuint32",
-            "name": "encryptedValue",
-            "type": "bytes32"
-          },
-          {
-            "internalType": "externalEaddress",
-            "name": "encryptedAccessPoint",
-            "type": "bytes32"
-          },
-          {
-            "internalType": "bytes",
-            "name": "inputProof",
-            "type": "bytes"
-          }
-        ],
-        "name": "storeEncryptedValue",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
+        "internalType": "externalEuint32",
+        "name": "encryptedValue",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "externalEaddress",
+        "name": "encryptedAccessPoint",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes",
+        "name": "inputProof",
+        "type": "bytes"
       }
-    ] as const;
+    ],
+    "name": "storeEncryptedValue",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+] as const;

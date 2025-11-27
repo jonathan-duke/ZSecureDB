@@ -65,14 +65,38 @@ export function DatabaseManager() {
     if (!metadataData) {
       return undefined;
     }
-    const [name, owner, createdAt, updatedAt, valueCount] = metadataData as readonly [
-      string,
-      string,
-      bigint,
-      bigint,
-      bigint,
-    ];
-    return { name, owner, createdAt, updatedAt, valueCount };
+
+    if (Array.isArray(metadataData)) {
+      const [name, owner, createdAt, updatedAt, valueCount] = metadataData as readonly [
+        string,
+        string,
+        bigint,
+        bigint,
+        bigint,
+      ];
+      return { name, owner, createdAt, updatedAt, valueCount };
+    }
+
+    if (typeof metadataData === 'object') {
+      const typed = metadataData as {
+        name?: string;
+        owner?: string;
+        createdAt?: bigint;
+        updatedAt?: bigint;
+        valueCount?: bigint;
+      };
+      if (typed.name && typed.owner && typed.createdAt !== undefined && typed.updatedAt !== undefined && typed.valueCount !== undefined) {
+        return {
+          name: typed.name,
+          owner: typed.owner,
+          createdAt: typed.createdAt,
+          updatedAt: typed.updatedAt,
+          valueCount: typed.valueCount,
+        };
+      }
+    }
+
+    return undefined;
   }, [metadataData]);
 
   const { data: encryptedAddressHandle } = useReadContract({
